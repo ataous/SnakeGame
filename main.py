@@ -38,11 +38,9 @@ while True:
         snake.add()
 
     if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
-        scoreboard.game_over()
-        break
-        
-    if snake.check_touch_tail():
-        scoreboard.game_over()
-        break
+        scoreboard.rest()
+        snake.reset()
 
-screen.exitonclick()
+    if snake.check_touch_tail():
+        scoreboard.rest()
+        snake.reset()

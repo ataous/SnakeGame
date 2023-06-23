@@ -21,50 +21,42 @@ class Snake:
     def __init__(self):
         self.squares = []
         self.create_snake()
-        self.head = self.squares[0]
-        return
 
     def create_snake(self):
         for i in range(3):
             self.squares.append(Turtle(shape="square"))
-            self.squares[i].penup()
-            self.squares[i].color("white")
-            self.squares[i].goto(i * (-SIZE), 0)
-        return
+            self.squares[-1].penup()
+            self.squares[-1].color("white")
+            self.squares[-1].goto(i * (-SIZE), 0)
+        self.head = self.squares[0]
 
     def add(self):
-        i = len(self.squares)
         self.squares.append(Turtle(shape="square"))
-        self.squares[i].penup()
-        self.squares[i].color("white")
-        self.squares[i].goto(self.squares[-1].position())
+        self.squares[-1].penup()
+        self.squares[-1].color("white")
+        self.squares[-1].goto(self.squares[-1].position())
 
     def move(self):
         for i in range(len(self.squares) - 1, 0, -1):
             self.squares[i].goto(self.squares[i - 1].xcor(), self.squares[i - 1].ycor())
 
         self.head.forward(SIZE)
-        return
 
     def up(self):
         if self.head.heading() != DOWN:
             self.head.setheading(UP)
-        return
 
     def down(self):
         if self.head.heading() != UP:
             self.head.setheading(DOWN)
-        return
 
     def left(self):
         if self.head.heading() != RIGHT:
             self.head.setheading(LEFT)
-        return
 
     def right(self):
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
-        return
 
     def check_touch_tail(self):
         for square in self.squares[1:]:
@@ -72,5 +64,11 @@ class Snake:
                 return True
         return False
 
-#  Ens Of Snake Class
+    def reset(self):
+        for square in self.squares:
+            square.goto(1000, 1000)
+        self.squares.clear()
+        self.create_snake()
+
+# Ens Of Snake Class
 # -----------------------------------------------------------
