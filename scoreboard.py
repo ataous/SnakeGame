@@ -15,17 +15,14 @@ class Scoreboard(Turtle):
         self.penup()
         self.goto(x=0, y=260)
         self.update()
-        return
 
     def update(self):
         self.clear()
         self.write(arg=f"Score: {self.score}  High Score: {self.high_score}", align=ALIGN, font=FONT)
-        return
 
     def increase_score(self):
         self.score += 1
         self.update()
-        return
 
     def rest(self):
         if self.score > self.high_score:
